@@ -5,8 +5,8 @@
 package Controller.Processors;
 
 import HadoopMini.Tarea;
-import Tasks.Task1.Map1;
-import Tasks.Task1.Reduce1;
+import MapReduce.VersionTask.AbstractTask;
+
 
 /**
  *
@@ -15,17 +15,22 @@ import Tasks.Task1.Reduce1;
 public class DataProcessor {
 
 	
-	public static void launchDataProcessor(String inputDirectory, String outputDirectory, int nodes) {
+	public static void launchDataProcessor(AbstractTask taskSelected, String inputDirectory, String outputDirectory, int nodes) {
 		
         String curDir = System.getProperty("user.dir");
         System.out.println(curDir + "\n");
+
+				if (taskSelected == null) {
+        System.out.println("Error: taskSelected es nulo. No se puede ejecutar el procesamiento.");
+        return;
+    }
 
         Tarea t = new Tarea();
         t.setInputFile(inputDirectory);
         t.setOutputFile(outputDirectory);
         t.setNodes(nodes);
-        t.setMapFunction(new Map1());
-        t.setReduceFunction(new Reduce1());
+        t.setMapFunction((elemento , output) -> taskSelected.map(elemento, output));
+        t.setReduceFunction((elemento, output) -> taskSelected.reduce(elemento, output));
         t.Run();
         System.out.println("Prueba 1 realizada");
     }

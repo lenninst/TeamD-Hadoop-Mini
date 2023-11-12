@@ -50,8 +50,8 @@ public class Task1 {
         System.out.println(curDir + "\n");
         
         Tarea t = new Tarea();
-        t.setInputFile("D:\\1Univseridad Octavo semestre\\Arquitectura hibrida\\proyectogrupal\\Proyecto2HadoopMIni\\FRPB-AD-Unidad2-ProyectoCodigo2-Ficheros\\weblog.txt");
-        t.setOutputFile("D:\\1Univseridad Octavo semestre\\Arquitectura hibrida\\proyectogrupal\\Proyecto2HadoopMIni\\FRPB-AD-Unidad2-ProyectoCodigo2-Ficheros\\trarea1.txt");
+        t.setInputFile("D:\\1s\\weblog.txt");
+        t.setOutputFile("D:\\1trarea1.txt");
         t.setNodes(2);
         t.setMapFunction(new Map1());
         t.setReduceFunction(new Reduce1());

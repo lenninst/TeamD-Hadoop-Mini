@@ -6,17 +6,28 @@ package View;
 
 import HadoopMini.MyMap;
 import HadoopMini.MyReduce;
-import HadoopMini.Tarea;
 import HadoopMini.Tupla;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
+import MapReduce.VersionTask.AbstractTask;
 
 /**
  *
  * @author kanguro
  */
-public class DemoApp {
-    //extends MapFunction
+public class DemoApp extends AbstractTask {
+
+	@Override
+	public void map(Tupla elemento, ArrayList output) {
+		Map1 map1 = new Map1();
+		map1.map(elemento, output);
+	}
+
+	@Override
+	public void reduce(Tupla elemento, ArrayList output) {
+		 Reduce1 reduce1 = new Reduce1();
+    reduce1.reduce(elemento, output);
+	}
     
     public static class Map1 implements MyMap {
         @Override
@@ -45,21 +56,5 @@ public class DemoApp {
         }
     }
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        String curDir = System.getProperty("user.dir");
-        System.out.println(curDir + "\n");
-        
-        Tarea t = new Tarea();
-        t.setInputFile("D:\\1Univseridad Octavo semestre\\Arquitectura hibrida\\proyectogrupal\\Proyecto2HadoopMIni\\FRPB-AD-Unidad2-ProyectoCodigo2-Ficheros\\weblog.txt");
-        t.setOutputFile("D:\\1Univseridad Octavo semestre\\Arquitectura hibrida\\proyectogrupal\\Proyecto2HadoopMIni\\FRPB-AD-Unidad2-ProyectoCodigo2-Ficheros\\trarea1.txt");
-        t.setNodes(2);
-        t.setMapFunction(new Map1());
-        t.setReduceFunction(new Reduce1());
-        t.Run();
-        System.out.println("Prueba 1 realizada");
-    }
     
 }
