@@ -8,13 +8,25 @@ package Tasks;
 
 import java.util.*;
 import HadoopMini.*;
+import MapReduce.VersionTask.AbstractTask;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 /**
  *
  * @author Scarlet Gutierrez
  */
-public class Task3 {
+public class Task3 extends AbstractTask {
+		@Override
+	public void map(Tupla elemento, ArrayList output) {
+		Task3.Map1 map1 = new Task3.Map1();
+		map1.map(elemento, output);
+	}
+
+	@Override
+	public void reduce(Tupla elemento, ArrayList output) {
+		 Task3.Reduce1 reduce1 = new Task3.Reduce1();
+    reduce1.reduce(elemento, output);
+	}
 
     public static class Map1 implements MyMap {
         @Override
@@ -45,6 +57,7 @@ public class Task3 {
             }
             output.add(new Tupla(elemento.getClave(), suma));
         }
+				
     }
 
     /**

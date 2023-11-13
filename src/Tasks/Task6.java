@@ -7,11 +7,24 @@ package Tasks;
 
 import java.util.*;
 import HadoopMini.*;
+import MapReduce.VersionTask.AbstractTask;
 /**
  *
  * @author Scarlet Gutierrez
  */
-public class Task6 {
+public class Task6 extends AbstractTask {
+
+	@Override
+	public void map(Tupla elemento, ArrayList output) {
+		Task6.Map1 map1 = new Task6.Map1();
+		map1.map(elemento, output);
+	}
+
+	@Override
+	public void reduce(Tupla elemento, ArrayList output) {
+		Task6.Reduce1 reduce1 = new Task6.Reduce1();
+		reduce1.reduce(elemento, output);
+	}
 
     public static class Map1 implements MyMap {
         @Override

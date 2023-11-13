@@ -7,12 +7,25 @@ package Tasks;
 
 import java.util.*;
 import HadoopMini.*;
+import MapReduce.VersionTask.AbstractTask;
 
 /**
  *
  * @author Scarlet Gutierrez
  */
-public class Task7 {
+	public class Task7 extends AbstractTask {
+
+	@Override
+	public void map(Tupla elemento, ArrayList output) {
+		Task7.Map1 map1 = new Task7.Map1();
+		map1.map(elemento, output);
+	}
+
+	@Override
+	public void reduce(Tupla elemento, ArrayList output) {
+		Task7.Reduce1 reduce1 = new Task7.Reduce1();
+		reduce1.reduce(elemento, output);
+	}
 
     public static class Map1 implements MyMap {
         @Override
@@ -57,8 +70,8 @@ public class Task7 {
         System.out.println(curDir + "\n");
         
         Tarea t = new Tarea();
-        t.setInputFile("D:\\User\\GrupoD\\happiness.txt"); // Reemplaza con la ruta correcta
-        t.setOutputFile("D:\\User\\GrupoD\\extremely_sad_words.txt"); // Reemplaza con la ruta correcta
+        t.setInputFile("C:\\Users\\kanguro\\Desktop\\files\\happiness.txt");
+        t.setOutputFile("C:\\Users\\kanguro\\Desktop\\files\\output\\task7.txt"); 
         t.setNodes(2);
         t.setMapFunction(new Map1());
         t.setReduceFunction(new Reduce1());
@@ -66,9 +79,9 @@ public class Task7 {
         System.out.println("Prueba 7 realizada");
         
         // Llamar al método ejecutar de ManejoArchivo para procesar los resultados
-        ManejoArchivo archivoHandler = new ManejoArchivo("D:\\User\\GrupoD\\extremely_sad_words.txt");
-        archivoHandler.ejecutar("D:\\User\\GrupoD\\happiness.txt");
-        archivoHandler.escribirFichero("D:\\User\\GrupoD\\extremely_sad_words.txt");
+        ManejoArchivo archivoHandler = new ManejoArchivo("C:\\Users\\kanguro\\Desktop\\files\\output\\task7.txt");
+        archivoHandler.ejecutar("C:\\Users\\kanguro\\Desktop\\files\\happiness.txt");
+        archivoHandler.escribirFichero("C:\\Users\\kanguro\\Desktop\\files\\output\\finaltask7.txt");
     }
     
 }
