@@ -1,7 +1,8 @@
 # Framework Hadoop-Mini
-Ingresa al directorio View y ejecuta el archivo hadoop-mini
+
 El framework Hadoop-Mini simplifica el modelo de programación MapReduce, ofreciendo componentes clave:
 ## Como ejecutar
+Ingresa al directorio View y ejecuta el archivo hadoop-mini 🥲🥲🥲
 
 ## Componentes
 
