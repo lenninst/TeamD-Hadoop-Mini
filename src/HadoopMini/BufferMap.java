@@ -1,16 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package HadoopMini;
 
 import java.util.ArrayList;
 
-/**
- *
- * @author Scarlet Gutierrez
- */
 public class BufferMap {
 
     private ArrayList lstParticionada = new ArrayList();
@@ -38,17 +29,18 @@ public class BufferMap {
     }
     
     
-    //PARTICIONAR
-    public void particionarBuffer (ArrayList lstTuplas, int numNodes) {
-        for (int i = 0; i < lstTuplas.size(); i ++) {
-            Tupla tp = (Tupla)lstTuplas.get(i);
-            int nodoReducer = (tp.getClave().hashCode()% numNodes);
-            //Para rastrear la partición
-            System.out.println("Tupla asignada a reducer " + nodoReducer + ": " + tp);
-            lstParticionada.add(new Tupla(nodoReducer, tp));
+    
+    public void particionarBuffer(ArrayList lstTuplas, int numNodes) {
+        for (int i = 0; i < lstTuplas.size(); i++) {
+            Tupla tp = (Tupla) lstTuplas.get(i);
+            if (tp.getClave() != null) {
+                int nodoReducer = tp.getClave().hashCode() % numNodes;
+                System.out.println("Tupla asignada a reducer " + nodoReducer + ": " + tp);
+                lstParticionada.add(new Tupla(nodoReducer, tp));
+            }
         }
     }
-    
+
     
     //ORDENADO
     public void ordenadoBuffer() {

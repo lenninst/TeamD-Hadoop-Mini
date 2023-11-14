@@ -1,18 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package Tasks;
+package Tasks; 
 
 import java.util.*;
 import HadoopMini.*;
 import MapReduce.VersionTask.AbstractTask;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-/**
- *
- * @author Scarlet Gutierrez
- */
 	public class Task7 extends AbstractTask {
 
 	@Override
@@ -27,40 +20,69 @@ import MapReduce.VersionTask.AbstractTask;
 		reduce1.reduce(elemento, output);
 	}
 
-    public static class Map1 implements MyMap {
-        @Override
-        public void map(Tupla elemento, ArrayList output) {
-            String line = String.valueOf(elemento.getValor());
-            String[] fields = line.split("\t");
+   public static class Map1 implements MyMap {
+    @Override
+    public void map(Tupla elemento, ArrayList<Tupla> output) {
+        String line = String.valueOf(elemento.getValor());
+        System.out.println("Línea completa: " + line);
+        // Verificar si la línea tiene al menos ocho tokens
+            String[] tokens = line.trim().split("\\s+");
+            System.out.println("Tokens: " + Arrays.toString(tokens));
 
-            if (fields.length >= 8) {
-                String word = fields[0];
-                double happinessAverage = Double.parseDouble(fields[2].trim());
-                String twitterRank = fields[4].trim();
+            if (tokens.length >= 8 && !tokens[0].isEmpty()) {
+                System.out.println("La línea no tiene al menos ocho tokens. Ignorando línea: " + line);
+                return;
+            }
 
-                System.out.println("Word: " + word + ", Happiness Average: " + happinessAverage + ", Twitter Rank: " + twitterRank);
+            // Definir el patrón de la línea
+            String pattern = "(\\w+)\\s+(\\d+)(?:\\s+(\\d+)(?:\\s+(\\d+)(?:\\s+(\\d+)(?:\\s+(\\d+)(?:\\s+(\\d+))?)?)?)?)?";
+            Pattern r = Pattern.compile(pattern);
+            Matcher matcher = r.matcher(line);
 
-                if (happinessAverage < 2.0 && !twitterRank.equals("--")) {
-                    // Agregar la palabra a la lista de palabras extremadamente tristes
-                    output.add(new Tupla("sadWord", word));
+            // Verificar si el patrón coincide con la línea
+            if (matcher.find()) {
+                try {
+                    String word = matcher.group(1);
+                    int happiness_average = Integer.parseInt(matcher.group(3));
+                    String twitter_rank_str = matcher.group(5);
+
+                    // Verificar si la felicidad media está por debajo de 2 y hay un ranking de Twitter
+                    if (happiness_average < 2) {
+                        // Verificar si tiene ranking de Twitter
+                        if (!"--".equals(matcher.group(5))) {
+                            // Agregar la palabra a la salida
+                            output.add(new Tupla("sadWord", word));
+                        }
+                    }
+                } catch (NumberFormatException e) {
+                    System.out.println("Error: Los valores no son números en la línea: " + line);
+                    System.out.println("Línea completa: " + line);
                 }
+
+            } else {
+                System.out.println("La línea no cumple con los requisitos. Ignorando línea: " + line);
             }
         }
     }
+
+
+
 
     public static class Reduce1 implements MyReduce {
-        @Override
-        public void reduce(Tupla elemento, ArrayList output) {
-            int suma = 0;
-            ArrayList lstValores = (ArrayList) elemento.getValor();
-            for (int j = 0; j < lstValores.size(); j++) {
-                suma += (int) lstValores.get(j);
+            @Override
+            public void reduce(Tupla elemento, ArrayList output) {
+                int suma = 0;
+                ArrayList lstValores = (ArrayList) elemento.getValor();
+                for (int j = 0; j < lstValores.size(); j++) {
+                    suma += (int) lstValores.get(j);
+                }
+                output.add(new Tupla(elemento.getClave(), suma));
             }
-            output.add(new Tupla(elemento.getClave(), suma));
         }
-    }
+
     
     
+
     
     /**
      * @param args the command line arguments
@@ -71,17 +93,20 @@ import MapReduce.VersionTask.AbstractTask;
         
         Tarea t = new Tarea();
         t.setInputFile("C:\\Users\\kanguro\\Desktop\\files\\happiness.txt");
-        t.setOutputFile("C:\\Users\\kanguro\\Desktop\\files\\output\\task7.txt"); 
+        t.setOutputFile("D:\\User\\GrupoD\\extremely_sad_words.txt");
         t.setNodes(2);
         t.setMapFunction(new Map1());
         t.setReduceFunction(new Reduce1());
         t.Run();
         System.out.println("Prueba 7 realizada");
-        
-        // Llamar al método ejecutar de ManejoArchivo para procesar los resultados
-        ManejoArchivo archivoHandler = new ManejoArchivo("C:\\Users\\kanguro\\Desktop\\files\\output\\task7.txt");
+
+
+
+        ManejoArchivo archivoHandler = new ManejoArchivo("C:\\Users\\kanguro\\Desktop\\files\\happiness.txt");
         archivoHandler.ejecutar("C:\\Users\\kanguro\\Desktop\\files\\happiness.txt");
-        archivoHandler.escribirFichero("C:\\Users\\kanguro\\Desktop\\files\\output\\finaltask7.txt");
+        archivoHandler.escribirFichero("D:\\User\\GrupoD\\extremely_sad_words.txt");
     }
-    
-}
+	}
+
+
+

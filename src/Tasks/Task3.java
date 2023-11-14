@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Tasks;
 
 
@@ -11,10 +6,7 @@ import HadoopMini.*;
 import MapReduce.VersionTask.AbstractTask;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-/**
- *
- * @author Scarlet Gutierrez
- */
+
 public class Task3 extends AbstractTask {
 		@Override
 	public void map(Tupla elemento, ArrayList output) {

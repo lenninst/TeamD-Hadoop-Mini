@@ -1,18 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Tasks;
 
 import java.util.*;
 import HadoopMini.*;
 import MapReduce.VersionTask.AbstractTask;
-/**
- *
- * @author Scarlet Gutierrez
- */
+
+
 public class Task4 extends AbstractTask {
+	
 		@Override
 	public void map(Tupla elemento, ArrayList output) {
 		Task4.Map1 map1 = new Task4.Map1();
@@ -26,38 +20,41 @@ public class Task4 extends AbstractTask {
 	}
 
     
-    public static class Map1 implements MyMap {
+  public static class Map1 implements MyMap {
         @Override
         public void map(Tupla elemento, ArrayList output) {
-            String line = String.valueOf(elemento.getValor());
+            ArrayList<Double> values = (ArrayList<Double>) elemento.getValor();
+            System.out.println("Paso 2: Map: Procesando MAP " + elemento.getClave());
+            System.out.println("Línea procesada: " + values);
 
-            // Dividir la línea en campos utilizando coma como separador
-            String[] fields = line.split(",");
-            if (fields.length >= 14) {
-                String surfaceTemp = fields[8].trim();
-                String windChill = fields[12].trim();
+            // Verificar si hay al menos 3 elementos en la lista
+            if (values.size() >= 3) {
+                double surfaceTemperature = values.get(1);
+                double windChill = values.get(2);
+                System.out.println("Surface Temperature: " + surfaceTemperature);
+                System.out.println("Wind Chill: " + windChill);
 
-                // Compara la temperatura en superficie con la sensación térmica
-                if (!surfaceTemp.equals(windChill)) {
-                    System.out.println("Diferencia encontrada - Surface Temp: " + surfaceTemp + ", Wind Chill: " + windChill);
-                    output.add(new Tupla("diferentes", line)); // Agregar la línea completa
+                // Emitir tupla clave-valor si surfaceTemperature es diferente de windChill
+                if (surfaceTemperature != windChill) {
+                    output.add(new Tupla(elemento.getClave(), surfaceTemperature - windChill));
                 }
             }
         }
     }
 
     public static class Reduce1 implements MyReduce {
-        @Override
-        public void reduce(Tupla elemento, ArrayList output) {
-            int suma = 0;
-            ArrayList lstValores = (ArrayList) elemento.getValor();
-            for (int j = 0; j < lstValores.size(); j++) {
-                suma += (int) lstValores.get(j);
-            }
-            output.add(new Tupla(elemento.getClave(), suma));
+    @Override
+    public void reduce(Tupla elemento, ArrayList output) {
+        double suma = 0;
+        ArrayList lstValores = (ArrayList) elemento.getValor();
+        for (int j = 0; j < lstValores.size(); j++) {
+            suma += (double) lstValores.get(j);
         }
+        output.add(new Tupla(elemento.getClave(), suma));
     }
-    
+}
+
+
 
     /**
      * @param args the command line arguments
@@ -74,7 +71,6 @@ public class Task4 extends AbstractTask {
         t.setReduceFunction(new Reduce1());
         t.Run();
         System.out.println("Prueba 4 realizada");
-        //System.out.println("Filtrado completado. Datos guardados en " + t.getOutputFile());
     }
     
 }

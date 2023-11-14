@@ -11,10 +11,6 @@ import Tasks.Task7;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- *
- * @author Lenin Guaminga
- */
 public class DataItemConverter {
 
     public static AbstractTask parseTaskFromItem(String taskItemSelected) {

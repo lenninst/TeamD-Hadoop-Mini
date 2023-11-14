@@ -7,9 +7,10 @@
             <file>file:/D:/1Univseridad%20Octavo%20semestre/Arquitectura%20hibrida/proyectogrupal/Proyecto2HadoopMIni/HadoopMini/src/Tasks/Task3.java</file>
             <file>file:/D:/1Univseridad%20Octavo%20semestre/Arquitectura%20hibrida/proyectogrupal/Proyecto2HadoopMIni/HadoopMini/src/Tasks/Task6.java</file>
             <file>file:/D:/1Univseridad%20Octavo%20semestre/Arquitectura%20hibrida/proyectogrupal/Proyecto2HadoopMIni/HadoopMini/src/HadoopMini/BufferReducer.java</file>
+            <file>file:/D:/1Univseridad%20Octavo%20semestre/Arquitectura%20hibrida/proyectogrupal/Proyecto2HadoopMIni/HadoopMini/src/Controller/Converters/DataItemConverter.java</file>
+            <file>file:/D:/1Univseridad%20Octavo%20semestre/Arquitectura%20hibrida/proyectogrupal/Proyecto2HadoopMIni/HadoopMini/src/MapReduce/VersionTask/VersionTask.java</file>
             <file>file:/D:/1Univseridad%20Octavo%20semestre/Arquitectura%20hibrida/proyectogrupal/Proyecto2HadoopMIni/HadoopMini/src/Controller/Extractors/NumberExtractor.java</file>
             <file>file:/D:/1Univseridad%20Octavo%20semestre/Arquitectura%20hibrida/proyectogrupal/Proyecto2HadoopMIni/HadoopMini/src/View/DemoApp.java</file>
-            <file>file:/D:/1Univseridad%20Octavo%20semestre/Arquitectura%20hibrida/proyectogrupal/Proyecto2HadoopMIni/HadoopMini/src/MapReduce/VersionTask/Version1Task.java</file>
             <file>file:/D:/1Univseridad%20Octavo%20semestre/Arquitectura%20hibrida/proyectogrupal/Proyecto2HadoopMIni/HadoopMini/src/HadoopMini/Tupla.java</file>
             <file>file:/D:/1Univseridad%20Octavo%20semestre/Arquitectura%20hibrida/proyectogrupal/Proyecto2HadoopMIni/HadoopMini/src/Controller/Extensions/ControllerUtils.java</file>
             <file>file:/D:/1Univseridad%20Octavo%20semestre/Arquitectura%20hibrida/proyectogrupal/Proyecto2HadoopMIni/HadoopMini/src/Controller/Processors/DataProcessor.java</file>
@@ -17,13 +18,15 @@
             <file>file:/D:/1Univseridad%20Octavo%20semestre/Arquitectura%20hibrida/proyectogrupal/Proyecto2HadoopMIni/HadoopMini/src/MapReduce/Interface/MapReduceTaskInterface.java</file>
             <file>file:/D:/1Univseridad%20Octavo%20semestre/Arquitectura%20hibrida/proyectogrupal/Proyecto2HadoopMIni/HadoopMini/src/HadoopMini/BufferMap.java</file>
             <file>file:/D:/1Univseridad%20Octavo%20semestre/Arquitectura%20hibrida/proyectogrupal/Proyecto2HadoopMIni/HadoopMini/src/HadoopMini/MyReduce.java</file>
+            <file>file:/D:/1Univseridad%20Octavo%20semestre/Arquitectura%20hibrida/proyectogrupal/Proyecto2HadoopMIni/HadoopMini/src/HadoopMini/Terna.java</file>
             <file>file:/D:/1Univseridad%20Octavo%20semestre/Arquitectura%20hibrida/proyectogrupal/Proyecto2HadoopMIni/HadoopMini/src/HadoopMini/Tarea.java</file>
             <file>file:/D:/1Univseridad%20Octavo%20semestre/Arquitectura%20hibrida/proyectogrupal/Proyecto2HadoopMIni/HadoopMini/src/HadoopMini/ManejoArchivo.java</file>
-            <file>file:/D:/1Univseridad%20Octavo%20semestre/Arquitectura%20hibrida/proyectogrupal/Proyecto2HadoopMIni/HadoopMini/src/Tasks/Task2.java</file>
             <file>file:/D:/1Univseridad%20Octavo%20semestre/Arquitectura%20hibrida/proyectogrupal/Proyecto2HadoopMIni/HadoopMini/src/Tasks/Task7.java</file>
+            <file>file:/D:/1Univseridad%20Octavo%20semestre/Arquitectura%20hibrida/proyectogrupal/Proyecto2HadoopMIni/HadoopMini/src/MapReduce/VersionTask/AbstractTask.java</file>
             <file>file:/D:/1Univseridad%20Octavo%20semestre/Arquitectura%20hibrida/proyectogrupal/Proyecto2HadoopMIni/HadoopMini/src/View/Utils/ComboBoxUtils.java</file>
             <file>file:/D:/1Univseridad%20Octavo%20semestre/Arquitectura%20hibrida/proyectogrupal/Proyecto2HadoopMIni/HadoopMini/src/Tasks/Task1.java</file>
             <file>file:/D:/1Univseridad%20Octavo%20semestre/Arquitectura%20hibrida/proyectogrupal/Proyecto2HadoopMIni/HadoopMini/src/Tasks/Task4.java</file>
+            <file>file:/D:/1Univseridad%20Octavo%20semestre/Arquitectura%20hibrida/proyectogrupal/Proyecto2HadoopMIni/HadoopMini/src/HadoopMini/MyMap.java</file>
         </group>
     </open-files>
 </project-private>
